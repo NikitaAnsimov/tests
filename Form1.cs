@@ -36,9 +36,9 @@ namespace WindowsFormsApp2
                 TXTtask.Focus();
                 return;
             }
-            if (text.Length > 200)
+            if (text.Length > 30)
             {
-                MessageBox.Show("слишком длинная задача(макс.200 символов)", "ты чикатило", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("слишком длинная задача(макс.30 символов)", "надо меньше пж пж", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TXTtask.Focus();
                 return;
             }
