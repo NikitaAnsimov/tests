@@ -37,6 +37,7 @@
             this.bitDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button_delete_all = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -115,11 +116,23 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button_delete_all
+            // 
+            this.button_delete_all.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.button_delete_all.Location = new System.Drawing.Point(98, 243);
+            this.button_delete_all.Name = "button_delete_all";
+            this.button_delete_all.Size = new System.Drawing.Size(75, 23);
+            this.button_delete_all.TabIndex = 10;
+            this.button_delete_all.Text = "button2";
+            this.button_delete_all.UseVisualStyleBackColor = true;
+            this.button_delete_all.Click += new System.EventHandler(this.button_delete_all_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 317);
+            this.Controls.Add(this.button_delete_all);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.bitDelete);
@@ -145,6 +158,7 @@
         private System.Windows.Forms.Button bitDelete;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_delete_all;
     }
 }
 

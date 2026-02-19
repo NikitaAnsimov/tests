@@ -94,8 +94,28 @@ namespace WindowsFormsApp2
             using (var sfd = new SaveFileDialog())
             {
                 sfd.Filter = "Todo files (*.todo)|*.todo | Text files(*.txt)|*.txt|All files(*.*)|*.*";
-                sfd.FileName = "task.todo"
+                sfd.FileName = "task.todo";
+
+                if(sfd.ShowDialog() != DialogResult.OK)
+                    return;
+
+                SaveToFile(sfd.FileName);
+
+                MessageBox.Show("Сохранено", "Сохранение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
             }
+        }
+
+        private void button_delete_all_Click(object sender, EventArgs e)
+        {
+            int index = cldTasks.Items.Count -1;
+            while (index > -1)
+            {
+                cldTasks.Items.RemoveAt(index);
+                --index;
+            }
+            UpdateStats();
         }
     }
 }
