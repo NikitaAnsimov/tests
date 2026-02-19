@@ -109,13 +109,36 @@ namespace WindowsFormsApp2
 
         private void button_delete_all_Click(object sender, EventArgs e)
         {
-            int index = cldTasks.Items.Count -1;
-            while (index > -1)
-            {
-                cldTasks.Items.RemoveAt(index);
-                --index;
-            }
+            cldTasks.Items.Clear();
+            MessageBox.Show("Список отчищен", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
             UpdateStats();
+        }
+
+        private void LoadFromFile(string path)
+        {
+            if (!File.Exists(path)) 
+            {
+                MessageBox.Show("фаил не найден", "Загрузка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            cldTasks.Items.Clear();
+
+            foreach(var line in File.ReadAllLines(path))
+            {
+                if (string.IsNullOrWhiteSpace(Line))
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (var ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Todo files (*.todo)|*.todo | Text files(*.txt)|*.txt|All files(*.*)|*.*";
+                if (ofd.ShowDialog() != DialogResult.OK)
+                    return;
+                LoadFromFile(ofd.FileName);
+                MessageBox.Show("Загруженно", "Загрузка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
