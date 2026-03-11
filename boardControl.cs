@@ -14,7 +14,7 @@ namespace WindowsFormsApp7
         private const int CellSize = 40;
         private const int HeaderSize = 25;
 
-        public board board { get; set; } = new board();
+        public Board board { get; set; } = new Board();
         public bool ShowShips { get; set; } = true;
         public bool IsInteractive { get; set; } = false;
         public bool IsSetapMode { get; set; } = false;
@@ -22,8 +22,8 @@ namespace WindowsFormsApp7
         public ShipDirection PreviewDir { get; set; } = ShipDirection.Horizontal;
         private Point previewCell = new Point(-1, -1);
 
-        public event EventHandler<EventArgs> CellClicked;
-        public event EventHandler<EventArgs> CellHovered;
+        public event Action<object, Point> CellClicked;
+        public event Action<object, Point> CellHovered;
 
         private static readonly Color ColorWater = Color.FromArgb(20, 60, 120);
         private static readonly Color ColorShip = Color.FromArgb(138, 224, 117);
@@ -36,7 +36,7 @@ namespace WindowsFormsApp7
 
         public boardControl()
         {
-            int totalSize = CellSize * board.Size + HeaderSize;
+            int totalSize = CellSize * Board.Size + HeaderSize;
             this.Size = new Size ( totalSize, totalSize );
             this.DoubleBuffered = true;
             this.Cursor = Cursors.Default;
@@ -47,6 +47,21 @@ namespace WindowsFormsApp7
             int col = (X - HeaderSize) / CellSize;
             int row = (Y - HeaderSize) / CellSize;
             return new Point ( row, col ); 
+        }
+        private Point CellToPixel(int row, int col)
+        {
+            return new Point(col * CellSize + HeaderSize, row * CellSize + HeaderSize);
+        }
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+            if (!IsInteractive) return;
+            var cell = PixelToCell(e.X, e.Y);
+            if (cell.X < 0 || cell.X > Board.Size || cell.Y < 0 || cell.Y > Board.Size)
+                return;
+
+            CellClicked?.Invoke(this, cell);
+            
         }
     }
 }

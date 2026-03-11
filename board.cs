@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp7
 {
-    public class board
+    public class Board
     {
         public const int Size = 10;
         public CellState[,] Grid { get; private set; } = new CellState [Size, Size];
